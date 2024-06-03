@@ -1,0 +1,38 @@
+<!-- treeGridComponent.html -->
+<template>
+
+    <lightning-tree-grid key-field="Id" columns={gridColumns} data={gridData} onrowselection={handleRowSelection}>
+    </lightning-tree-grid>
+
+
+    <template if:true={selectedAccounts}>
+
+        <template for:each={selectedAccounts} for:item="account">
+            <div key={account.Id}>
+                <lightning-card   title={account.Name}>
+                    
+                        <ul  class="slds-m-around_medium">
+                            <template iterator:it={account.Contacts}>
+                                <li key={it.value.Id}>
+                                   <div  if:true={it.first}   class="list-first">
+                                        <p style="font-size:medium; color:crimson ">Related Contacts:</p>
+                                    </div>
+                                    
+                                    {it.value.FirstName} {it.value.LastName}
+                                
+                                
+                                    <div if:true={it.last} class="list-last"></div>
+                                
+                                
+                                </li>
+
+                            </template>
+                        </ul>
+                </lightning-card>
+            </div>
+
+        </template>
+    </template>
+
+
+</template>
