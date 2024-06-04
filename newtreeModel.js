@@ -20,6 +20,7 @@ export default class NewtreeModel extends LightningElement {
 
         getAccountContactDetails()
         .then(result=>{
+
             const temp=JSON.parse(JSON.stringify(result));
             for(var i=0;i<temp.length;i++){
                 var relatedContacts = temp[i]['Contacts'];
@@ -27,9 +28,9 @@ export default class NewtreeModel extends LightningElement {
                     temp[i]._children=relatedContacts;
                     delete temp[i].Contacts;
             }
-            console.log(relatedContacts);
         }
         this.gridData=temp;
+
         })
        
     }
@@ -70,7 +71,9 @@ export default class NewtreeModel extends LightningElement {
                 selectedAccounts.push(accountObj);
             }
         });
+    
         this.selectedAccounts = selectedAccounts;
         console.log('Data:::', JSON.stringify(this.selectedAccounts));
-    }  
+    }
+    
 }
